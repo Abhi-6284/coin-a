@@ -1,49 +1,21 @@
 const { buildSchema } = require('graphql');
 
-
-
-
-// const schema = buildSchema(`
-//   type Todo {
-//     id: ID!
-//     title: String!
-//     completed: Boolean!
-//   }
-
-//   input TodoInput {
-//     title: String!
-//     completed: Boolean
-//   }
-
-//   type Query {
-//     getTodos: [Todo]
-//     getTodoById(id: ID!): Todo
-//   }
-
-//   type Mutation {
-//     createTodo(input: TodoInput): Todo
-//     updateTodoById(id: ID!, input: TodoInput): Todo
-//     deleteTodoById(id: ID!): Todo
-//   }
-// `);
-
-
 const schema = buildSchema(`
   scalar ID
 
   type User {
     id: ID!
-    name: String!
+    firstName: String!
+    lastName: String!
     email: String!
     password: String!
-    role: String!
   }
 
   input UserInput {
-    name: String!
+    firstName: String!
+    lastName: String!
     email: String
     password: String
-    role: String
   }
 
   type Query {

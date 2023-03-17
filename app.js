@@ -1,6 +1,7 @@
 require('dotenv').config()
 // Libraries
 const express = require('express')
+const cookieParser = require('cookie-parser')
 const Routers = require('./Routes/api.Router')
 const { graphqlHTTP } = require('express-graphql');
 
@@ -12,6 +13,7 @@ const schema = require('./GraphQL/resolver.Graphql')
 
 // Calling functions from Libraries
 const app = express()
+app.use(cookieParser())
 
 // Application configurations
 app.use(express.json());

@@ -19,6 +19,7 @@ const controller = require('../Controllers/api.controller');
 // }
 const routes = {
     '/login': [controller.postLogin],
+    '/register': [controller.postRegister],
 }
 for (const [path, handlers] of Object.entries(routes)) {
     router.post(path, handlers);
