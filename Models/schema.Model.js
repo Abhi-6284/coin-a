@@ -5,6 +5,6 @@ const User = mongoose.model('users', {
     lastName: String,
     email: String,
     password: String
-});
+},{timestamps: true});
 
 module.exports = User;

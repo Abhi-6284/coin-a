@@ -17,11 +17,17 @@ const controller = require('../Controllers/api.controller');
 //     '/delete/service': [controller.postDeleteService],
 //     '/mode/payment': [controller.postModePayment],
 // }
-const routes = {
+const postRoutes = {
     '/login': [controller.postLogin],
     '/register': [controller.postRegister],
 }
-for (const [path, handlers] of Object.entries(routes)) {
+for (const [path, handlers] of Object.entries(postRoutes)) {
     router.post(path, handlers);
+}
+const getRoutes = {
+    '/user': [controller.getUsers]
+}
+for (const [path, handlers] of Object.entries(getRoutes)) {
+    router.get(path, handlers);
 }
 module.exports = router;
