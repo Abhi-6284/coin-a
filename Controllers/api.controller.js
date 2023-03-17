@@ -7,7 +7,7 @@ exports.postLogin = async (req, res) => {
         const userData = await root.getUserByPara({email: req.body.email});
         if(!userData){throw new Error("No User found!..");}else{
             if(await bcrypt.compare(req.body.password, userData.password)){
-                return res.cookie("access_token", jwt.sign({id: userData}, process.env.JWT_SECRET_KEY, {expiresIn: process.env.JWT_EXPIRES_IN})).status(200).json({message:"Logged in successfully 😊 👌"})   
+                return res.cookie("access_token", jwt.sign({id: userData}, process.env.JWT_SECRET_KEY, {expiresIn: process.env.JWT_EXPIRES_IN})).status(201).json({message:"Logged in successfully 😊 👌"})   
                 
             }else{throw new Error("Invalid Password");}
         }
