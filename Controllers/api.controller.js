@@ -2,7 +2,7 @@ const root = require('../GraphQL/resolver.Graphql');
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 
-exports.postLogin = async (req, res) => {
+exports.postLogin = async (req, res) => { 
     try {
         const userData = await root.getUserByPara({email: req.body.email});
         if(!userData){throw new Error("No User found!..");}else{
