@@ -3,15 +3,15 @@ const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 
 exports.getLogout = async (req, res, next) => {
-    req.session = null // Deletes the cookie.
-    req.session.destroy // Deletes the session in the database.
-    return res.sendStatus(403).json({ message: "Successfully Logout" })
+    // req.session = null // Deletes the cookie.
+    req.session.destroy(); // Deletes the session in the database.
+    return res.json({ message: "Successfully Logout" })
 }
 exports.getUsers = async (req, res, next) => {
     try {
         const token = req.session.token;
         if (!token) {
-            return res.sendStatus(403).json({ message: "Token Expired..." });
+            return res.json({ message: "Token Expired..." });
         }
         try {
             const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
