@@ -4,10 +4,10 @@ const controller = require('../Controllers/api.controller');
 
 // const routes = {
 //     '/login': [controller.postLogin],
-//     '/register': [controller.postRegister],
-//     '/resetPassword': [controller.postReset],
-//     '/edit/User': [controller.postEditUser],
-//     '/create/User': [controller.postCreateUser],
+//     '/uregister': [controller.postRegister],
+//     '/gresetPassword': [controller.postReset],
+//     '/uedit/User': [controller.postEditUser],
+//     '/ncreate/User': [controller.postCreateUser],
 //     '/delete/User': [controller.postDeleteUser],
 //     '/edit/Customer': [controller.postEditCustomer],
 //     '/create/Customer': [controller.postCreateCustomer],
@@ -24,8 +24,10 @@ const postRoutes = {
 for (const [path, handlers] of Object.entries(postRoutes)) {
     router.post(path, handlers);
 }
+
 const getRoutes = {
-    '/user': [controller.getUsers]
+    '/user': [controller.getUsers],
+    '/logout': [controller.getLog]
 }
 for (const [path, handlers] of Object.entries(getRoutes)) {
     router.get(path, handlers);

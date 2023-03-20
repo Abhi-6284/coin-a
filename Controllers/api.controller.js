@@ -2,6 +2,9 @@ const root = require('../GraphQL/resolver.Graphql');
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 
+exports.getLog = async (req, res, next) => {
+    req.session.destory
+}
 exports.getUsers = async (req, res, next) => {
     try {
         const token = req.session.token;
