@@ -2,14 +2,15 @@ const root = require('../GraphQL/resolver.Graphql');
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 
-exports.getLog = async (req, res, next) => {
-    req.session.destory
+exports.getLogout = async (req, res, next) => {
+    req.session = null // Deletes the cookie.
+    req.session.destroy // Deletes the session in the database.
 }
 exports.getUsers = async (req, res, next) => {
     try {
         const token = req.session.token;
         if (!token) {
-            return res.sendStatus(403);
+            return res.sendStatus(403).json({ message: "Token Expired..." });
         }
         try {
             const data = jwt.verify(token, process.env.JWT_SECRET_KEY);

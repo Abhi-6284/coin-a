@@ -27,7 +27,7 @@ for (const [path, handlers] of Object.entries(postRoutes)) {
 
 const getRoutes = {
     '/user': [controller.getUsers],
-    '/logout': [controller.getLog]
+    '/logout': [controller.getLogout]
 }
 for (const [path, handlers] of Object.entries(getRoutes)) {
     router.get(path, handlers);
