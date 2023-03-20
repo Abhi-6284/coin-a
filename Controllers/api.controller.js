@@ -4,21 +4,17 @@ const jwt = require('jsonwebtoken')
 
 exports.getUsers = async (req, res, next) => {
     try {
-        const token = req.cookies.access_token;
+        const token = req.session.token;
         if (!token) {
             return res.sendStatus(403);
         }
         try {
             const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
-            console.log(data);
-            // req.userId = data._id;
-            // req.userName = data.firstName + ' ' + data.lastName;
-            // req.userEmail = data.email;
-            // return next();
+            const userDetails = await root.getUserById({id:data.id});
+            return res.status(201).json({ userDetail: userDetails })
         } catch {
             return res.sendStatus(403);
         }
-        // const userData = await root.getUserByPara({email: req.body.email});
     } catch (e) { return res.status(401).json({ message: e.message }) }
 }
 
@@ -26,9 +22,11 @@ exports.postLogin = async (req, res) => {
     try {
         const userData = await root.getUserByPara({ email: req.body.email });
         if (!userData) { throw new Error("No User found!.."); } else {
-            const token = jwt.sign({ id: userData }, process.env.JWT_SECRET_KEY, { expiresIn: process.env.JWT_EXPIRES_IN })
+            const token = jwt.sign({ id: userData._id }, process.env.JWT_SECRET_KEY, { expiresIn: process.env.JWT_EXPIRES_IN })
             if (await bcrypt.compare(req.body.password, userData.password)) {
                 console.log(token);
+                req.session.token = token;
+                console.log(req.session);
                 return res.cookie("access_token", token).status(201).json({ message: "Logged in successfully 😊 👌" })
 
             } else { throw new Error("Invalid Password"); }
