@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 exports.getLogout = async (req, res, next) => {
     req.session = null // Deletes the cookie.
     req.session.destroy // Deletes the session in the database.
+    return res.sendStatus(403).json({ message: "Successfully Logout" })
 }
 exports.getUsers = async (req, res, next) => {
     try {
