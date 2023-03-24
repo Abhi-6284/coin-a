@@ -1,6 +1,6 @@
 const { buildSchema } = require('graphql');
 
-const schema = buildSchema(`
+module.exports = schema = buildSchema(`
   scalar ID
 
   type User {
@@ -30,6 +30,3 @@ const schema = buildSchema(`
     deleteUserById(id: ID!): User
   }
 `);
-
-
-module.exports = schema;
