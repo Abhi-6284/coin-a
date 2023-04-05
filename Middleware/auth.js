@@ -2,8 +2,8 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 
 exports.verifyToken = (req, res, next) => {
-    // const token = req.headers["authorization"];
-    const token = req.cookies['access_token'];
+    const token = req.headers["authorization"];
+    // const token = req.cookies['access_token'];
     try {
         if (token){
             jwt.verify(token, process.env.JWT_SECRET_KEY, (err, valid)=>{

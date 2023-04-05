@@ -23,7 +23,7 @@ exports.postLogin = async (req, res) => {
             if (await bcrypt.compare(req.body.password, userData.password)) {
                 req.session.token = token;
                 return res.cookie("access_token", token).status(201).json({ message: "Logged in successfully 😊 👌",
-                token: token
+                token
             })
 
             } else { throw new Error("Invalid Password"); }
